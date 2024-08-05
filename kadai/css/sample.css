@@ -1,0 +1,251 @@
+body{
+    margin:0;
+    padding:0;
+    text-align:left;
+    font-size: 32px;
+    width:100%;
+}
+header{
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+}
+h1{
+    font-size: 100%;
+}
+main{
+    width:100%;
+    display: block;
+    border-top:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+    position:relative;
+}
+
+footer{
+    background-color: #fff;
+    border-bottom:1px solid #ccc;
+    text-align: center;
+}
+p{
+    font-size:200%;
+    text-align: center;
+    border-bottom:1px solid #fff;
+    height:200px;
+}
+
+/* 設定ボタン */
+.setting{
+    text-align: center;
+    margin: 10px auto;
+    width: 100%;
+}
+.setting button{
+    width: 50px;
+    height: 50px;
+    background: lightblue;
+    border: 0;
+    border-radius: 50%;
+}
+.setting button img{
+    padding-top: 7px;
+    width: 85%;
+    height: auto;
+    justify-content: center;
+}
+.setting button:hover {
+    background: lightcoral;
+    cursor: pointer;
+}
+
+/* Bookリスト */
+.book-list img{
+    width: 100%;
+    height: auto;
+    align-items: center;
+}
+.book-list table{
+    margin: 20px 3%;
+    border:1px solid #8dc3f5;
+    width:96%;
+}
+.book-list th{
+    background-color:#d0e7fc;
+    border-bottom: 1px solid #8dc3f5;
+}
+.book-list td{
+    background-color:#eff1f4;
+    border-bottom: 1px solid #8dc3f5;
+}
+.book-list h1{
+    font-size: 20px;
+}
+.book-list h3{
+    font-size: 15px;
+}
+.book-list button{
+    width: 50px;
+    height: 50px;
+    background: lightblue;
+    border: 0;
+    border-radius: 50%;
+}
+.book-list button img{
+    padding-top: 3px;
+    width: 85%;
+    height: auto;
+    justify-content: center;
+}
+.book-list button:hover {
+    background: lightcoral;
+    cursor: pointer;
+}
+.status-btn{
+    display: flex;
+}
+.status-btn label{
+    font-size: 15px;
+    display: block;
+    width: 80px;
+    background: #eadcc3;
+    color: #000;
+    padding: 10px;
+    margin: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+.status-btn input:checked+label{
+    background: #e86005;
+    color: #FFF;
+}
+.status-btn input{
+    display: none;
+}
+
+
+
+
+#key{
+    margin:0 3%;
+    width: 95%;
+    font-size:80%;
+    background-color: #e1efff;
+    box-shadow: 3px 3px 3px 3px #555;
+}
+
+
+
+
+/* モーダルウィンドウの基本スタイル */
+.button {
+    display: block;
+    margin: auto;
+    background: lightblue;
+    color: #fff;
+    padding: 0 2em;
+    border: 0;
+    width: 250px;
+    height: 60px;
+    font-size: 20px;
+    border-radius: 50px;
+    font-weight: 900;
+    position: relative;
+    align-items: center;
+    font-family: serif;
+}
+  
+.button:hover {
+    background: lightcoral;
+    cursor: pointer;
+}
+  
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+.modal-content {
+    background-color: #f4f4f4;
+    margin: 20% auto;
+    width: 90%;
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17);
+    animation-name: modalopen;
+    animation-duration: 1s;
+}
+@keyframes modalopen {
+    from {opacity: 0}
+    to {opacity: 1}
+} 
+.modal-header h1 {
+    text-align: center;
+}
+.modal-header {
+    background: lightblue;
+    padding: 3px 15px;
+    display: flex;
+    justify-content: space-between;
+}  
+.modalClose {
+    font-size: 2rem;
+}
+.modalClose:hover {
+    cursor: pointer;
+}
+  
+.modal-body {
+    padding: 10px 20px;
+    color: black;
+}
+/* 登録フォーム */
+
+textarea {
+  /* すべてのテキストフィールドのフォント設定を一致させる
+     既定で、 textarea には等幅フォントが設定されている */
+  font: 1em sans-serif;
+  /* テキストフィールドの大きさを統一 */
+  width: 300px;
+  box-sizing: border-box;
+  /* フォームフィールド境界に合わせる */
+  border: 1px solid #999;
+}
+#text {
+    display: block;
+    margin: 0;
+    transition: 0.4s ease-in-out;
+    height: 30px;
+    padding: 0;
+    width: 0;
+}
+input#text.check {
+    width: 100%;
+    padding: 0 15px;
+}
+/* レビュー星の設定 */
+.stars span{
+    display: flex;               /* 要素をフレックスボックスにする */
+    flex-direction: row-reverse; /* 星を逆順に並べる */
+    justify-content: flex-end;   /* 逆順なので、左寄せにする */
+} 
+.stars input[type='radio']{
+    display: none;               /* デフォルトのラジオボタンを非表示にする */
+}
+.stars label{
+    color: #D2D2D2;              /* 未選択の星をグレー色に指定 */
+    font-size: 30px;             /* 星の大きさを30pxに指定 */
+    padding: 0 5px;              /* 左右の余白を5pxに指定 */
+    cursor: pointer;             /* カーソルが上に乗ったときに指の形にする */
+}  
+.stars label:hover,
+.stars label:hover ~ label,
+.stars input[type='radio']:checked ~ label{
+    color: #F8C601;              /* 選択された星以降をすべて黄色にする */
+}
+

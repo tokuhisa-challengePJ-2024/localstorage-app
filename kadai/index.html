@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>myMemoPad</title>
+<script src="js/jquery-2.1.3.min.js"></script>
+<script src="https://unpkg.com/@ericblade/quagga2@1.7.4/dist/quagga.min.js"></script>
+
+<link rel="stylesheet" href="css/sample.css">
+</head>
+<body>
+<header>
+<h1>Book Memo</h1>
+</header>
+<main>
+    <!-- <input type="text" id="key"> -->
+    <!-- <textarea id="memo"></textarea> -->
+    <!-- <ul> -->
+        <!-- <li id="save">Save</li> -->
+        <!-- <li id="clear">Clear</li> -->
+    <!-- </ul> -->
+    <!-- 設定 -->
+     <div class="setting">
+        <!-- フィルタ -->
+        <button class="filter">
+            <img src="img/fillter_btn2.png" alt="filter_btn">
+        </button>
+        <!-- 並べ替え -->
+        <button class="sorting">
+            <img src="img/sorting_btn.png" alt="filter_btn">
+        </button>
+
+     </div>
+</main>
+<!-- Book追加欄 -->
+<div class="book-list">
+    <table id="book-list-table">
+        <div class="book-list-sample">
+            <tr>
+                <th style="width: 10%"><img src="img/book_sample.png" alt="sample"></th>
+                <td style="width: 60%">
+                    <div class="book-content">
+                        <h1>たった一人の分析から事業は成長する 実践 顧客起点マーケティング</h1>
+                        <h3>内容メモ：あああああああああ</h3>
+                        <div class="status-btn">
+                            <input type="radio" checked id="11" name="example3"><label for="11">購入検討</label>
+                            <input type="radio" id="12" name="example3"><label for="12">未読</label>
+                            <input type="radio" id="13" name="example3"><label for="13">読書中</label>
+                            <input type="radio" id="14" name="example3"><label for="14">読了</label>
+                        </div>
+                    </div>
+                </td>
+                <td style="width: 20%" align="center">
+                    <div class="stars">
+                        <span>
+                            <!-- データ取得の都合上valueの値を反転 -->
+                            <input id="review01" type="radio" name="review" value="5"><label for="review01">★</label>
+                            <input id="review02" type="radio" name="review" value="4"><label for="review02">★</label>
+                            <input id="review03" type="radio" name="review" value="3"><label for="review03">★</label>
+                            <input id="review04" type="radio" name="review" value="2"><label for="review04">★</label>
+                            <input id="review05" type="radio" name="review" value="1"><label for="review05">★</label>
+                        </span>
+                    </div>
+                </td>
+                <td style="width: 10%" align="center">
+                    <div class="book-edit">
+                        <button><img src="img/edit_btn.png" alt=""></button>
+                    </div>
+                </td>
+            </tr>
+            
+        </div>
+
+    </table>
+    <!-- 登録ボタン -->
+    
+</div>
+<button id="modalOpen" class="button">追加</button>
+
+<!-- モーダル -->
+<div id="easyModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>本の登録</h1>
+        <span class="modalClose">×</span>
+      </div>
+      <div class="book-list">
+            <table id="book-register-table">
+                <tr>
+                    <th style="width: 10%">
+                        <input type="file" name="book-tmb" accept="image/jpeg, image/png" onchange="preview_file(this)">
+                        <img id="preview">
+                        <script>
+                            function preview_file(hoge){
+                              var fileData = new FileReader();
+                              fileData.onload = (function() {
+                                //id属性が付与されているimgタグのsrc属性に、fileReaderで取得した値の結果を入力することで
+                                //プレビュー表示している
+                                document.getElementById('preview').src = fileData.result;
+                              });
+                              fileData.readAsDataURL(hoge.files[0]);
+                            }
+                        </script>
+                    </th>
+                    <td style="width: 60%">
+                        <h1><input type="text" name="book-title" id="book-title"></h1>
+                        <h3><textarea id="book-overview"></textarea></h3>
+                        <!-- ステータス -->
+                        <div class="status-btn">
+                            <input type="radio" checked id="15" name="example3" value="consider"><label for="15">購入検討</label>
+                            <input type="radio"  id="16" name="example3" value="buy"><label for="16">未読</label>
+                            <input type="radio"  id="17" name="example3" value="read"><label for="17">読書中</label>
+                            <input type="radio"  id="18" name="example3" value="finish"><label for="18">読了</label>
+                        </div>
+                    </td>
+
+                    <td style="width: 20%" align="center">
+                        <div class="stars">
+                            <span>
+                                <!-- データ取得の都合上valueの値を反転 -->
+                                <input id="review1" type="radio" name="review" value="5"><label for="review1">★</label>
+                                <input id="review2" type="radio" name="review" value="4"><label for="review2">★</label>
+                                <input id="review3" type="radio" name="review" value="3"><label for="review3">★</label>
+                                <input id="review4" type="radio" name="review" value="2"><label for="review4">★</label>
+                                <input id="review5" type="radio" name="review" value="1"><label for="review5">★</label>
+                            </span>
+                        </div>
+                    </td>
+
+                    <td style="width: 10%" align="center">
+                        
+                        <div id="book-register">
+                            <button><img src="img/resister_btn.png" alt=""></button>
+                        </div>
+
+                    </td>
+                </tr>
+
+            </table>
+
+
+        </div>
+        
+      </div>
+</div>
+
+
+<script>
+
+//1.Save クリックイベント
+$("#save").on("click", function(){
+    const key = $("#key").val();
+    const value = $("#memo").val();
+    localStorage.setItem(key, value);
+
+    // 一覧に表示
+    const html = '<tr><th>' + key + '</th><td>' + value  +'</th><td>';
+    $("#list").append(html);
+
+    // インプット文字を消す
+    $("#key").val("");
+    $("#memo").val("");
+});
+
+
+
+
+
+//2.clear クリックイベント
+$("#clear").on("click",function() {
+    localStorage.clear();
+    $("#list").empty();
+});
+
+
+
+//3.ページ読み込み：保存データ取得表示
+for(let i = 0; i < localStorage.length; i++) {
+    // key（何番）でkey名を取得
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+    // 一覧表示
+    const html = '<tr><th>' + key + '</th><td>' + value + '</td></tr>';
+    $("#list").append(html);
+}
+
+
+
+
+</script>
+<!-- 自作のJS -->
+<script src="js/main.js"></script>
+
+<footer><small>G's</small></footer>
+</body>
+</html>
